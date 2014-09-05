@@ -35,20 +35,15 @@ Arbitrary example and can change depending on subject
 Primitive Obsession
 ======================
 
-Primitive Obsession is using primitive data types to represent domain ideas
-For example, we use a String to represent a message, an Integer to represent an amount of money, or a plain json object to represent a specific object
-
-see http://c2.com/cgi/wiki?PrimitiveObsession for more details
-
-Other Subjects
-======================
-
-It is possible to add other subjects other than primitive obsession
-Each subject could have a folder and a learning objectives
-With examples and any explanation which might help
+https://github.com/lukejpreston/checkoutKataJavascript/tree/master/katas/PrimitiveObsession
 
 Tools
 ======================
 
 Jasmine for testing
 Grunt for executing things
+
+After cloning
+npm install
+grunt jasmine
+you can then open the _SpecRunner.html file in the browser
