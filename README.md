@@ -21,12 +21,12 @@ If you spend over 100 gold you get 10 percent discount
 Optional (for people who finish the above quickly)
 1 Gold = 12 Silver
 
-| Item Name | Price  | Type   | Discount                             |
-|-----------|-------:|--------|--------------------------------------|
-| Apple     | 10     | fruit  | 3 for 25                             |
-| Banana    | 15     | fruit  | buy on get one free                  |
-| Orange    | 18     | fruit  | does not have any                    |
-| Sword     | 20G 2S | weapon | all fruit prices are slashed in half |
+| Item Name | Price  | Type   | Discount                                               |
+|-----------|-------:|--------|--------------------------------------------------------|
+| Apple     | 10     | fruit  | 3 for 25                                               |
+| Banana    | 15     | fruit  | buy on get one free                                    |
+| Orange    | 18     | fruit  | does not have any                                      |
+| Sword     | 20G 2S | weapon | all fruit prices are slashed in half (before discount) |
 
 The goal is not to rush and meet all requirements but to learn the subject at hand
 Hence part of the Kata is to pick the requirements which are most important
