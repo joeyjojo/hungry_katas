@@ -1,0 +1,12 @@
+{
+  "name": "checkout-training",
+  "version": "0.0.1",
+  "description": "used to train people with katas using a checkout example",
+  "scripts": {
+    "test": "grunt jasmine"
+  },
+  "devDependencies": {
+    "grunt-contrib-jasmine": "~0.6.1",
+    "grunt": "~0.4.2"
+  }
+}
