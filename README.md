@@ -44,6 +44,6 @@ Jasmine for testing
 Grunt for executing things
 
 After cloning
-npm install
-grunt jasmine
+npm install,
+grunt jasmine,
 you can then open the _SpecRunner.html file in the browser
