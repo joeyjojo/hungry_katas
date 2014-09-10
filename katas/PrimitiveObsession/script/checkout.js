@@ -1,7 +1,20 @@
+function Gold(quantity) {
+    this.quantity = quantity
+}
+
+Gold.ZERO = new Gold(0)
+
 function Checkout() {
     this.scan = function(item) {
-        console.log('I have scanned: ' + item);
+        this.total = new Gold(10)
     },
-	this.total = 0;
 
+	this.total = Gold.ZERO
+}
+
+function Item(){ 
+}
+
+var Items = {
+    apple: new Item()
 }
