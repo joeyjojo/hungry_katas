@@ -27,9 +27,9 @@ describe ('Primitive Obsession', function () {
 	})
 
 	it('scans a banana and an apple at the correct price', function(){
-		checkout.scan(Items.apple)
-		checkout.scan(Items.banana)
-		bananaAndAppleGold = new Gold(25)
+		checkout.scan(Items.apple);
+		checkout.scan(Items.banana);
+		bananaAndAppleGold = new Gold(25);
 		expect(checkout.total).toBeSameGold(bananaAndAppleGold)
 	})
 })

@@ -1,20 +1,24 @@
 function Gold(quantity) {
-    this.quantity = quantity
+    this.quantity = quantity;
+
 }
 
-Gold.ZERO = new Gold(0)
+Gold.ZERO = new Gold(0);
 
 function Checkout() {
     this.scan = function(item) {
-        this.total = new Gold(10)
+        this.total = new Gold(item.cost);
     },
 
-	this.total = Gold.ZERO
+	this.total = Gold.ZERO;
 }
 
-function Item(){ 
+function Item(cost){
+	 this.cost = cost;
 }
 
 var Items = {
-    apple: new Item()
+    apple: new Item(10),
+	banana: new Item(15)
+
 }
