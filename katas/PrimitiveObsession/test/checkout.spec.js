@@ -5,7 +5,7 @@ var checkoutMatchers = {
         var result = {};
         result.pass = util.equals(actual.quantity, expected.quantity, customEqualityTesters);
         if (!result.pass)
-          result.message = "Expected Money with quantity: " + actual.quantity + " but got Money with quantity: " + expected.quantity
+          result.message = "Expected Money with quantity: " + expected.quantity + " but got Money with quantity: " + actual.quantity
         return result;
       }
     };
