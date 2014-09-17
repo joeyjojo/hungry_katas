@@ -16,10 +16,11 @@ Currency is gold doubloons (or gold for short, aka pirate money)
 | Banana    | 15    | buy on get one free |
 | Orange    | 18    | does not have any   |
 
-If you spend over 100 gold you get 10 percent discount
+If you spend over 100 gold you get 10 percent discount rounded up to nearest gold
 
 Optional (for people who finish the above quickly)
 1 Gold = 12 Silver
+If you spend over 100 gold you get 10 percent discount rounded up to nearest silver
 
 | Item Name | Price  | Type   | Discount                                               |
 |-----------|-------:|--------|--------------------------------------------------------|
