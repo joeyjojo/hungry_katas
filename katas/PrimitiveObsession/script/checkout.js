@@ -1,13 +1,22 @@
 function Gold(quantity) {
-    this.quantity = quantity;
+    this.value = quantity;
+	this.add = function(sumTo) {
+		var added = quantity + sumTo;
+		return added;
+	}
 
 }
+function getTotal () {
+	return Gold.goldTotal;
+}
+Gold.goldTotal = 0;
 
 Gold.ZERO = new Gold(0);
 
 function Checkout() {
     this.scan = function(item) {
-        this.total = new Gold(item.cost);
+        this.total.value = new Gold(item.cost).add(this.total.value);
+
     },
 
 	this.total = Gold.ZERO;
