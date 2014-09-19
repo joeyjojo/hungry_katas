@@ -25,16 +25,23 @@ var grass = {
     flying: 2
 }
 
+function ultimateMultiplier(types, getMultiplier) {
+    var multiplier = 1
+    types.forEach(function(type) {
+        multiplier = multiplier * getMultiplier(type)
+    })
+    return multiplier
+}
+
 function Pokemon() {
     var types = []
     for (var t in arguments)
         types.push(arguments[t])
 
     this.attacked = function(attack) {
-        var weakness = 1
-        for (var t in types)
-            weakness = weakness * attack.multiplier(types[t])
-        return weakness
+        return ultimateMultiplier(types, function(type){
+            return attack.multiplier(type)
+        })
     }
 }
 
@@ -43,15 +50,14 @@ function Attack() {
     for (var t in arguments)
         types.push(arguments[t])
 
-    this.multiplier = function(type) {
-        function deriveMultiplier(type, attackType) {
-            return type[attackType] || 1
+    this.multiplier = function(attackType) {
+        function deriveMultiplier(attackType, type) {
+            return attackType[type] || 1
         }
 
-        var multiplier = 1
-        for (var t in types)
-            multiplier = multiplier * deriveMultiplier(type, types[t])
-        return multiplier
+        return ultimateMultiplier(types, function(type) {
+            return deriveMultiplier(attackType, type)
+        })
     }
 
 }
