@@ -51,12 +51,8 @@ function Attack() {
         types.push(arguments[t])
 
     this.multiplier = function(attackType) {
-        function deriveMultiplier(attackType, type) {
-            return attackType[type] || 1
-        }
-
         return ultimateMultiplier(types, function(type) {
-            return deriveMultiplier(attackType, type)
+            return attackType[type] || 1
         })
     }
 
