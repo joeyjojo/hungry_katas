@@ -33,22 +33,25 @@ function ultimateMultiplier(types, getMultiplier) {
     return multiplier
 }
 
-function Pokemon() {
+function createTypes(arguments) {
     var types = []
     for (var t in arguments)
         types.push(arguments[t])
+    return types;
+}
+
+function Pokemon() {
+    var types = createTypes(arguments)
 
     this.attacked = function(attack) {
-        return ultimateMultiplier(types, function(type){
+        return ultimateMultiplier(types, function(type) {
             return attack.multiplier(type)
         })
     }
 }
 
 function Attack() {
-    var types = []
-    for (var t in arguments)
-        types.push(arguments[t])
+    var types = createTypes(arguments)
 
     this.multiplier = function(attackType) {
         return ultimateMultiplier(types, function(type) {
