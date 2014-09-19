@@ -42,21 +42,27 @@ function createTypes(arguments) {
 
 function Pokemon() {
     var types = createTypes(arguments)
-
+    var myAttack
     this.attacked = function(attack) {
-        return ultimateMultiplier(types, function(type) {
-            return attack.multiplier(type)
-        })
+        myAttack = attack
+        return ultimateMultiplier(types, funky)
+    }
+
+    var funky = function(type) {
+        return myAttack.multiplier(type)
     }
 }
 
 function Attack() {
     var types = createTypes(arguments)
-
+    var myAttackType
     this.multiplier = function(attackType) {
-        return ultimateMultiplier(types, function(type) {
-            return attackType[type] || 1
-        })
+        myAttackType = attackType
+        return ultimateMultiplier(types, funky)
+    }
+
+    var funky = function(type) {
+        return myAttackType[type] || 1
     }
 
 }
