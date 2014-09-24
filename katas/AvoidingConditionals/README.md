@@ -7,6 +7,9 @@ Definition
 Using if...else and switch statements can be hard to maintain. if...else statements can change frequently and become tiering.
 switch statements aren't open to change in a similar way
 
+http://designpepper.com/blog/drips/using-duck-typing-to-avoid-conditionals-in-javascript
+http://designpepper.com/blog/drips/using-dispatch-tables-to-avoid-conditionals-in-javascript
+
 
 Kata
 ======================
