@@ -6,26 +6,23 @@ var Status = {
 
 function NoOne() {
     this.status = Status.none
-    this.isDead = function() {
-        return true
-    }
 }
 
 function Person(name) {
     this.name = name
+
     var _defender = NoOne
+
     this.defneder = function(target) {
         if (!arguments.length)
             return _defender
         _defender = target
         return this
     }
+
     this.status = Status.alive
     this.die = function() {
         this.status = Status.dead
-    }
-    this.isDead = function() {
-        this.status !== Status.alive
     }
 }
 
@@ -34,16 +31,16 @@ function Terminator(id) {
 
     var terminator = {
         id: _id
-    }
+    };
 
     terminator.kill = function(target) {
-        if (terminator.isDead())
+        if (terminator.status === Status.dead)
             return terminator
-        if (!target.defneder().isDead())
-            terminator.kill(target.defneder())
-        target.die()
-        return terminator
-    }
+        if (target.defneder().status === Status.alive)
+                terminator.kill(target.defneder())
+        target.status = Status.dead
+        return terminator;
+    };
 
     terminator.defend = function(target) {
         target.defneder(terminator)
@@ -51,6 +48,7 @@ function Terminator(id) {
     }
 
     var _defender = NoOne
+
     terminator.defneder = function(target) {
         if (!arguments.length)
             return _defender
@@ -61,9 +59,6 @@ function Terminator(id) {
     terminator.status = Status.alive
     terminator.die = function() {
         terminator.status = Status.dead
-    }
-    terminator.isDead = function() {
-        terminator.status !== Status.alive
     }
 
     return terminator

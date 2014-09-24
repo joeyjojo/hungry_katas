@@ -33,5 +33,6 @@ describe('Constructor Patterns', function() {
             arnie.kill(cop)
             expect(cop.status).toBe(Status.alive)
         })
+
     })
 })
