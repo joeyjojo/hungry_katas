@@ -1,18 +1,17 @@
 Constructor Patterns Kata
-======================
+=========================
 
 Definition
-======================
+==========
 
-JavaScript has multiple ways to make objects and no OO way of scaoping variable
-These patterns are used to avoid setters and getters and should be used to avoid making variables 'private'
+JavaScript has multiple ways to make objects and no OO way of scoping variable
+These patterns are nice constructors, they should help avoid things like getters and setters and help create awesome api's
 http://www.samselikoff.com/blog/2013/11/14/some-Javascript-constructor-patterns/
 
-This article highlights something like 4 ways to create constructors
-The aim of this kata is to try to use them all and discover how and when they should be used
+This article highlights four ways to create constructors
 
 Prototypes
-======================
+==========
 
 ``
 function Person(firstName, LastName) {
@@ -50,7 +49,7 @@ A convention is to change the variables to _firstName/_lastName and this indicat
 
 
 Closures
-======================
+========
 
 I can't remember it is complex I know that
 And it is also the same as the first way... so i must have it wrong
@@ -122,8 +121,8 @@ cons things like lastName has 2 behaviors (probably fixable)
 People('luke', 'preston').middleName('john').fullName()
 
 
-Custom constructors
-======================
+Custom Constructors
+===================
 
 Person = Ember.Object.extend({
   fullName: function() {
@@ -141,9 +140,11 @@ That is from Ember.js but Backbone.js and class.js is similar
 This can be pretty powerful but it isn't the fastest way to do this
 and you can't have privates
 
+Becuase it requires a library we won't use this
 
-Object literals
-======================
+
+Object Literals
+===============
 
 var sam = {
     firstName: "Sam",
@@ -156,19 +157,9 @@ var sam = {
 not much to say, if you don't need something complex this is probably best thing ever
 very much like a decision table, see Avoiding Conditionals Kata
 
-
-Optimization
-======================
-
-Many of the points here, and articles online claim that many of these aren't optimized
-However they can be optimized if you have a decent minifier which turns everything into the prototype style in the first constructor
-So if you have the option of a really nice complier then it is probably best to then choose which looks best
-For this Kata we will focus on 1, 2 and the 4th pattern because I don't want to confuse people with a library
-Discussion Point: Pattern 3, advantages and disadvantages of getting an external library
-
-
 Kata
 ======================
 
-1. All plain old objects must be made using option 1 or 4
-2. Anything which is user interfacing (part of a library) but use option 2
+1. Any object which holds simply holds data should use a simple prototype
+2. Any object which holds only values (like static values) should use object literals
+2. Anything which is user interfacing (part of a library) but use option closures

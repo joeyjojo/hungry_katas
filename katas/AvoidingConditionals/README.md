@@ -102,4 +102,4 @@ Other conditionals which should either be avoided or replaced with the above
 
     AWESOME.... well at least it won't break v_v
 
-    (if you ever see this happen outside of the kata you have permission to beat someone about the head herring)
+    (if you ever see this happen outside of the kata you have permission to beat someone about the head with a herring)

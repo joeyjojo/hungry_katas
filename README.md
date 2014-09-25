@@ -51,3 +51,8 @@ Constructors are two fold problem
 one is to be able to create awesome API's 
 the other is to create simple objects which hold data
 www.github.com/katas/AcoidingConditonals
+
+Future Katas
+====================
+
+One would be to do jasmine tests which is really here to help you get through the katas and to learn TDD

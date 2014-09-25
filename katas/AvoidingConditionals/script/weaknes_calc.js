@@ -40,7 +40,6 @@ function createTypes(arguments) {
     return types;
 }
 
-//ran out of time but should be able to extract pokemon and attack as they are the same name except that funky is not
 function Pokemon() {
     var types = createTypes(arguments)
     var myAttack
