@@ -1,25 +1,16 @@
 describe('Avoiding Conditionals', function() {
     describe('Weakness Multipliers', function() {
         var charmander = new Pokemon(fire)
-
         var geodude = new Pokemon(rock, ground)
-
         var steelix = new Pokemon(ground, steel)
-        
         var aron = new Pokemon(steel, rock)
-
         var deerling = new Pokemon(normal, grass)
         
         var bubble = new Attack('water')
-
         var vineWhip = new Attack('grass')
-
         var slash = new Attack('normal')
-
         var doubleEdge = new Attack('normal')
-
         var flyingPress = new Attack('flying', 'fighting')
-        
         var flameThrower = new Attack('fire')
 
         it('a single weakness has a two times effectiveness', function() {

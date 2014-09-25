@@ -1,5 +1,5 @@
 Checkout Kata JavaScript
-======================
+========================
 
 A training example to highlight good practices with JavaScript
 
@@ -18,6 +18,9 @@ Currency is gold doubloons (or gold for short, aka pirate money)
 
 If you spend over 100 gold you get 10 percent discount rounded up to nearest gold
 
+Optional Extra For Quick People
+===============================
+
 Optional (for people who finish the above quickly)
 1 Gold = 12 Silver
 If you spend over 100 gold you get 10 percent discount rounded up to nearest silver
@@ -29,22 +32,13 @@ If you spend over 100 gold you get 10 percent discount rounded up to nearest sil
 | Orange    | 18     | fruit  | does not have any                                      |
 | Sword     | 20G 2S | weapon | all fruit prices are slashed in half (before discount) |
 
-The goal is not to rush and meet all requirements but to learn the subject at hand
-Hence part of the Kata is to pick the requirements which are most important
-Arbitrary example and can change depending on subject
-
-Primitive Obsession
+Notes
 ======================
 
-https://github.com/lukejpreston/checkoutKataJavascript/tree/master/katas/PrimitiveObsession
+For the person who is running the session I find that it is sometimes good to make it a competition
 
-Tools
-======================
+Everyone starts at 10 points and for every string/double that isn't sensibly added to a constructor knock off 5 points
+For every json object which hasn't been extracted to a prototype knock off 10 points
+For every instance someone can evidence doing one of the 3 things from the README.md add 5 points
 
-Jasmine for testing
-Grunt for executing things
-
-After cloning
-npm install,
-grunt jasmine,
-you can then open the _SpecRunner.html file in the browser
+Don't forget to put aside some time to let teams talk about how they can apply this to their code currently or how they feel about the techniques

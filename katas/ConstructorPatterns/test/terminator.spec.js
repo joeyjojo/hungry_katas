@@ -47,7 +47,7 @@ describe('Constructor Patterns', function() {
         })
 
         it('can kill multiple people', function(){
-            arnie.kill(john).kill(sarah)
+            cop.kill(john).kill(sarah)
             expect(john).toBeDead()
             expect(sarah).toBeDead()
         })

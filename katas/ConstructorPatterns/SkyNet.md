@@ -1,29 +1,36 @@
 Sky Net
 ======================
 
-Need to build an api which is for defense
+The objective is to build a terminator api which people who work at sky net can use
 
-We have these things called terminators which are robots which kill people we tell them to
+A terminator has 2 commands, kill and defend
+These commands take a target
+These should be able to be chained together
+e.g. terminator.kill(person_one).kill(person_two).defend(person_three)
 
-Terminators have multiple inputs but we need a simlpe API to be able to tell the robots what to do
+If a terminator is attacking a terminator who is being defended then they must also kill the defender
 
-a suggested api is:
+Humans can not attack, they can only die
 
-Terminator.kill(target)
-Terminator.defend(target)
+Optional Extra For Quick People
+===============================
 
-where target is a person, people, an item, items or a place
+The target and terminators should be able to defend themselves from an attack with a chance of winning
 
-Each terminator must also be callable
- i.e. we can't just say Terminator.kill(johnConnor) and expect all of them to try and kill this random name we just made up
- we would need somehting like terminator1.kill(sarahConnot) also a name we just made up...
- and it would be great if we could chain some of these together e.g.
- arnie.kill(sarahConnor).kill(johnConnor)
+Optional Extra For Really Quick People
+===============================
 
- or
+The target does not have to be human, it could be an item or a place
+e.g. terminator.defend(house) and terminator.kill(tank)
 
- arnie.kill(ladyTerminator).defend(johnConnor)
+Notes
+======================
 
-There is also the chance, however small, that a person is able to defend themselves
-    e.g. john.defendWith(plasticExplosives)
-    which means that the terminator will fail until the defending persons weapon has been destroyed
+For the person who is running the session I find that it is sometimes good to make it a competition
+
+Everyone starts at 0 points
+Every time someone can evidence they have used a pattern they get 1 point
+If they can convince people that it was the best constructor to use they get 10
+If no constructor patterns were used then then loose 10 points
+
+Don't forget to put aside some time to let teams talk about how they can apply this to their code currently or how they feel about the techniques
