@@ -3,7 +3,7 @@ Status = {
     dead: 'dead'
 }
 
-Terminator = function(name) {
+function Terminator(name) {
     this.name = name
 
     var status = Status.alive
@@ -30,7 +30,7 @@ NoOne = {
     die: function() {}
 }
 
-Human = function(name) {
+function Human(name) {
     this.name = name
     var status = Status.alive
     var defender = NoOne
