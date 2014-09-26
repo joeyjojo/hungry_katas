@@ -111,7 +111,6 @@ function Person(firstName, lastName) {
   }
 }
 ``
-pros it doesn't require the word new, hence it doesn't create a brand new object every time
 pros you can in the first one, have truly private variables
 pros amazing public api, ideal adapters and ideal for builders
 

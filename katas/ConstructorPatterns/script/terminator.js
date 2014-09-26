@@ -1,65 +1,61 @@
-var Status = {
-    dead: 'dead',
+Status = {
     alive: 'alive',
-    none: 'none'
+    dead: 'dead'
 }
 
-function NoOne() {
-    this.status = Status.none
-}
-
-function Person(name) {
+Terminator = function(name) {
     this.name = name
 
-    var _defender = NoOne
+    var status = Status.alive
 
-    this.defneder = function(target) {
-        if (!arguments.length)
-            return _defender
-        _defender = target
-        return this
+    this.die = function() {
+        status = Status.dead
     }
 
-    this.status = Status.alive
-    this.die = function() {
-        this.status = Status.dead
+    this.isDead = function() {
+        return status === Status.dead
+    }
+
+    this.kill = function(target) {
+        if (!this.isDead())
+            target.die()
     }
 }
 
-function Terminator(id) {
-    var _id = id
+NoOne = {
+    name: 'no one',
+    isDead: function() {
+        return true
+    },
+    die: function() {}
+}
 
-    var terminator = {
-        id: _id
-    };
+Human = function(name) {
+    this.name = name
+    var status = Status.alive
+    var defender = NoOne
 
-    terminator.kill = function(target) {
-        if (terminator.status === Status.dead)
-            return terminator
-        if (target.defneder().status === Status.alive)
-                terminator.kill(target.defneder())
-        target.status = Status.dead
-        return terminator;
-    };
-
-    terminator.defend = function(target) {
-        target.defneder(terminator)
-        return terminator
+    this.isDead = function() {
+        return status === Status.dead
     }
 
-    var _defender = NoOne
-
-    terminator.defneder = function(target) {
-        if (!arguments.length)
-            return _defender
-        _defender = target
-        return terminator
+    this.die = function() {
+        defender.die()
+        status = Status.dead
     }
 
-    terminator.status = Status.alive
-    terminator.die = function() {
-        terminator.status = Status.dead
+    this.cowerBehind = function(terminator) {
+        defender = terminator
     }
+}
 
-    return terminator
+TerminatorAPI = {
+    kill: function(terminator, target) {
+        terminator.kill(target)
+        return this
+    },
+    defend: function(terminator, target) {
+        target.cowerBehind(terminator)
+        return this
+    }
 }

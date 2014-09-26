@@ -3,25 +3,11 @@ var terminatorMatchers = {
         return {
             compare: function(target, expected) {
                 var result = {};
-                result.pass = util.equals(target.status, Status.dead, customEqualityTesters);
-                if (!result.pass && target.name)
-                    result.message = "Expected person " + target.name + ' to be dead but is not'
-                if (!result.pass && target.id)
-                    result.message = "Expected " + target.id + ' to be dead but is not'
-                return result;
-            }
-        };
-    },
-
-    toBeAlive: function(util, customEqualityTesters) {
-        return {
-            compare: function(target, expected) {
-                var result = {};
-                result.pass = util.equals(target.status, Status.alive, customEqualityTesters);
-                if (!result.pass && target.name)
-                    result.message = "Expected " + target.name + ' to be dead but is not'
-                if (!result.pass && target.id)
-                    result.message = "Expected " + target.id + ' to be dead but is not'
+                result.pass = target.isDead()
+                if (!result.pass)
+                    result.message = 'Expected ' + target.name + ' to be dead'
+                else
+                    result.message = 'Expected ' + target.name + ' NOT to be dead'
                 return result;
             }
         };
@@ -29,40 +15,51 @@ var terminatorMatchers = {
 };
 
 describe('Constructor Patterns', function() {
-    describe('Killing People', function() {
 
-        var arnie, cop, john, sarah;
+    var api, arnie, kyle, sarah
 
-        beforeEach(function(){
-            jasmine.addMatchers(terminatorMatchers);
-            arnie = new Terminator('arnie')
-            cop = new Terminator('cop')
-            john = new Person('john')
-            sarah = new Person('sarah')            
+    beforeEach(function() {
+        jasmine.addMatchers(terminatorMatchers);
+
+        api = TerminatorAPI
+        arnie = new Terminator('arnie')
+        cop = new Terminator('cop')
+        kyle = new Human('kyle')
+        sarah = new Human('sarah')
+    })
+
+    describe('Killing', function() {
+        it('terminators can kill a single human', function() {
+            api.kill(arnie, kyle)
+            expect(kyle).toBeDead()
         })
 
-        it('can kill john connor', function() {
-            arnie.kill(john)
-            expect(john).toBeDead()
-        })
+        it('can chain kill multiple people', function() {
+            api
+                .kill(arnie, kyle)
+                .kill(arnie, sarah)
 
-        it('can kill multiple people', function(){
-            cop.kill(john).kill(sarah)
-            expect(john).toBeDead()
+            expect(kyle).toBeDead()
             expect(sarah).toBeDead()
         })
 
-        it('if a person is being defended and a terminator kills them they also have to kill the terminator', function(){
-            arnie.defend(john)
-            cop.kill(john)
-            expect(arnie).toBeDead()
-            expect(john).toBeDead()
-        })
-
-        it('if you are dead you can not kill', function(){
-            cop.kill(arnie)
-            arnie.kill(cop)
-            expect(cop).toBeAlive()
+        it('terminators can not kill if they are dead', function() {
+            api
+                .kill(cop, arnie)
+                .kill(arnie, sarah)
+            expect(sarah).not.toBeDead()
         })
     })
+
+    describe('Defending', function() {
+        it('if a terminator attacks someone who is being defended then they kill the defender first', function() {
+            api
+                .defend(arnie, sarah)
+                .kill(cop, sarah)
+
+            expect(arnie).toBeDead()
+            expect(sarah).toBeDead()
+        })
+    })
+
 })
