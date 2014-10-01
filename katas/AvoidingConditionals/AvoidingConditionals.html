@@ -24,21 +24,35 @@
   <script src="../../lib/CodeMirror/mode/javascript/javascript.js"></script>
   <script src="../../lib/CodeMirror/keymap/sublime.js"></script>
 
+  <script src="AvoidingConditionalsCode.js"></script>
+  <script src="../../lib/KataImpressSlides.js"></script>
+
   <style>
     .CodeMirror { height: auto; border: 1px solid #ddd; }
     .CodeMirror-scroll { max-height: 700px; min-height: 700px; }
     .CodeMirror pre { padding-left: 7px; line-height: 1.25; text-align: left;}
     .coder {
-      padding-top: 100px;
-      font-size: 12px;
+      font-size: 24px;
       width: 200%;
+      overflow: hidden;
       margin-left: -50%;
+      padding-top: 10%;
+      height: 90%;
     }
-    .tester {
-      width: 200%;
-      height: 400px;
-      margin-left: -50%;
-      padding-top: 20px;
+
+    .code {
+      width: 47%;
+      float: left;
+    }
+    .test {
+      padding-left: 2%;
+      overflow: hidden;
+    }
+
+    .jasmine {
+      width: 100%;
+      padding-top: 1%;
+      height: 35%;
     }
     h1 {
       font: 70px Tahoma, Helvetica, Arial, Sans-Serif;
@@ -51,7 +65,7 @@
     }
     p, pre {
       font: Tahoma, Helvetica, Arial, Sans-Serif;
-      width: 200%;
+      width: 180%;
       margin-left: -50%;
       text-align: center;
     }
@@ -92,127 +106,36 @@
     <div id="ducking" class="step" data-x="6000" data-y="2000">
       <h1>Duck Typing</h1>
       <pre>If it <b>Flies</b> like a Duck, <b>Swims</b> like a Duck and <b>Quacks</b> like a Duck...
-                                                                                                                      Then it's a Duck!</pre>
-      <br/>
-      <br/>
-      <p>Extract if statements to a common interface</p>
-      <p>Avoid guarding against unknown API behaviour</p>
+                                                                                                                         Then it's a Duck!</pre>
+        <br/>
+        <br/>
+        <p>Extract if statements to a common interface</p>
+        <p>Avoid guarding against unknown API behaviour</p>
+      </div>
+      <div id="duck" class="step" data-x="4000" data-y="2000">
+
+      </div>
+      <div id='switches' class="step" data-x="2000" data-y="2000">
+        <h1>Switch Statements</h1>
+        <p>Designed only to be quick</p>
+        <p>They are the same as if..else</p>
+        <p>Are they better/worse/same as other conditionals?</p>
+      </div>
+      <div id='decision_tables' class="step" data-x="0" data-y="2000">
+        <h1>Decision Tables</h1>
+        <p>Extract each case to a new method</p>
+        <p>Put all those methods on a new object(s)</p>
+        <p>Have an interface which just uses said object(s)</p>
+      </div>
+      <div id="decision" class="step" data-x="-2000" data-y="2000">
+      </div>
+      <div id="conclusion" class="step" data-x="-2000" data-y="0">
+        <h1>Conclusion</h1>
+        <p>Do we still need conditionals?</p>
+        <p>If so when should we use them?</p>
+      </div>
     </div>
-    <div id="duck_example" class="step" data-x="4000" data-y="2000">
-      <div class='coder'>
-        <textarea id='ducks'>
-function Book(title, quote) {
-  this.title = title
-  this.quote = quote
-}
-
-function Magazine(issue, article) {
-  this.issue = issue
-  this.article = article
-}
-
-function Document(file, theory) {
-  this.file = file
-  this.theory = theory
-}
-
-function read(item) {
-  var result = 'nothing to read'
-  if(item.hasOwnProperty('quote'))
-    result = item.quote
-  else if(item.article)
-    result = item.article
-  else if(item instanceof Document)
-    result = item.theory
-  return result
-}
-
-var harryPotter = new Book('Harry Potter', 'shut up ron')
-var unix = new Magazine('November 2014', 'zshell is cool')
-var primes = new Document('Euclids Elements', 'there are infinatly many primes')
-describe('Duck Typing', function(){
-  it('enjoys the novel', function(){
-    expect(read(harryPotter)).toBe('shut up ron')
-  })
-
-  it('an article on something interesting', function(){
-    expect(read(unix)).toBe('zshell is cool')
-  })
-
-  it('theory is correct', function(){
-    expect(read(primes)).toBe('there are infinatly many primes')
-  })
-})</textarea>
-</div>
-<iframe class='tester' id='larry' src="AvoidingConditionalsSpec.html?spec=Duck%20Typing"></iframe>
-</div>
-<div id='switches' class="step" data-x="2000" data-y="2000">
-  <h1>Switch Statements</h1>
-  <p>Designed only to be quick</p>
-  <p>They are the same as if..else</p>
-  <p>Are they better/worse/same as other conditionals?</p>
-</div>
-<div id='decision' class="step" data-x="0" data-y="2000">
-  <h1>Decision Tables</h1>
-  <p>Extract each case to a new method</p>
-  <p>Put all those methods on a new object(s)</p>
-  <p>Have an interface which just uses said object(s)</p>
-</div>
-<div id="decision_example" class="step" data-x="-2000" data-y="2000">
-  <div class='coder'>
-    <textarea id='decisions'>
-function movePlayer(direction) {
-  return 'moved: ' + direction
-}
-
-function describeLocation() {
-    return 'in a room with developers coding'
-}
-
-function showBackpack() {
-    return 'nothing, just a space for a mac and its charger'
-}
-
-function processUserInput(command) {
-  var result = 'unknown command'
-    switch (command) {
-        case "north":
-            result = movePlayer("north");
-            break;
-        case "look":
-            result = describeLocation();
-            break;
-        case "backpack":
-            result = showBackpack();
-            break;
-    }
-  return result
-}
-
-describe('Decision Tables', function(){
-  it('can move north', function(){
-    expect(processUserInput('north')).toBe('moved: north')
-  })
-  
-  it('look around the roon', function(){
-    expect(processUserInput('look')).toBe('in a room with developers coding')
-  })
-  
-  it('see what is in backpack', function(){
-    expect(processUserInput('backpack')).toBe('nothing, just a space for a mac and its charger')
-  })
-})
-</textarea>
-</div>
-<iframe class='tester' id='barry' src="AvoidingConditionalsSpec.html?spec=Decision%20Tables"></iframe>
-</div>
-<div id="conclusion" class="step" data-x="-2000" data-y="0">
-  <h1>Conclusion</h1>
-  <p>Do we still need conditionals?</p>
-  <p>If so when should we use them?</p>
-</div>
-</div>
-</div>
+  </div>
 </div>
 <div class="hint">
   <p>Use F1 F2 keys to navigate (mac)</p>
@@ -224,59 +147,8 @@ describe('Decision Tables', function(){
 </script>
 <script src="../../lib/impress/impress.js"></script>
 <script>
-  var impress = impress()
-  impress.init()
-
-  function runTests(editor, iframeId) {
-    localStorage.setItem('tests', editor.getValue())
-    var barry = document.getElementById(iframeId)
-    barry.src = barry.src
-  }
-
-  function testOnSlideChange() {
-    var slide = location.hash.split('/')[1]
-    if(slide === 'decision_example') {
-      runTests(decisionEditor, 'barry')
-    } else if(slide === 'duck_example') {
-      runTests(duckEditor, 'larry')
-    }
-  }
-
-  window.onhashchange = function() {
-    testOnSlideChange()
-  }
-
-  CodeMirror.commands.transposeChars = function(){}
-
-  var duckEditor = CodeMirror.fromTextArea(document.getElementById("ducks"), {
-    lineNumbers: true,
-    mode: "javascript",
-    matchBrackets: true,
-    viewTo: 100
-  });
-
-  var decisionEditor = CodeMirror.fromTextArea(document.getElementById("decisions"), {
-    lineNumbers: true,
-    mode: "javascript",
-    matchBrackets: true,
-    viewTo: 100
-  });
-
-  localStorage.setItem('tests', duckEditor.getValue())
-
-  duckEditor.on('keyHandled', function(codeMirror, key){
-    if(key === 'Ctrl-T') {
-      runTests(duckEditor, 'larry')
-    }
-  })
-
-  decisionEditor.on('keyHandled', function(codeMirror, key){
-    if(key === 'Ctrl-T') {
-      runTests(decisionEditor, 'barry')
-    }
-  })
-
-  testOnSlideChange()
+  createSlides('duck', 'decision')
+  impress().init()  
 </script>
 </body>
 </html>

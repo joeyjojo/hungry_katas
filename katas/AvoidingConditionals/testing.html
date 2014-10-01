@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=1024" />
+  <link rel="shortcut icon" href="../../lib/impress/favicon.png" />
+  <link rel="apple-touch-icon" href="../../lib/impress/favicon.png"/>
+
+  <link rel=stylesheet href="../../lib/CodeMirror/lib/codemirror.css">
+  <link rel="stylesheet" href="../../lib/CodeMirror/addon/fold/foldgutter.css">
+  <link rel="stylesheet" href="../../lib/CodeMirror/addon/dialog/dialog.css">
+  <script src="../../lib/CodeMirror/lib/codemirror.js"></script>
+  <script src="../../lib/CodeMirror/addon/search/searchcursor.js"></script>
+  <script src="../../lib/CodeMirror/addon/search/search.js"></script>
+  <script src="../../lib/CodeMirror/addon/dialog/dialog.js"></script>
+  <script src="../../lib/CodeMirror/addon/edit/matchbrackets.js"></script>
+  <script src="../../lib/CodeMirror/addon/edit/closebrackets.js"></script>
+  <script src="../../lib/CodeMirror/addon/comment/comment.js"></script>
+  <script src="../../lib/CodeMirror/addon/wrap/hardwrap.js"></script>
+  <script src="../../lib/CodeMirror/addon/fold/foldcode.js"></script>
+  <script src="../../lib/CodeMirror/addon/fold/brace-fold.js"></script>
+  <script src="../../lib/CodeMirror/mode/javascript/javascript.js"></script>
+  <script src="../../lib/CodeMirror/keymap/sublime.js"></script>
+
+  <script src="AvoidingConditionalsCode.js"></script>
+
+  <style>
+    .CodeMirror { height: auto; border: 1px solid #ddd; }
+    .CodeMirror-scroll { max-height: 600px; min-height: 600px; }
+    .CodeMirror pre { padding-left: 7px; line-height: 1.25; text-align: left;}
+    .coder {
+      font-size: 20px;
+      width: 90%;
+      overflow: hidden;
+      padding-left: 5%;
+      padding-top: 2%;
+      height: 90%;
+    }
+
+    .code {
+      width: 47%;
+      float: left;
+    }
+    .test {
+      padding-left: 2%;
+      overflow: hidden;
+    }
+
+    .jasmine {
+      width: 100%;
+      padding-top: 1%;
+      height: 35%;
+    }
+
+  </style>
+  <title>Avoiding Conditionals</title>
+</head>
+<body>
+  <div class='coder'>
+    <div class='code'>
+      <textarea id='duck_code'></textarea>
+    </div>
+    <div class='test'>
+      <textarea id='duck_tests'></textarea>
+    </div>
+    <iframe class='jasmine' frameBorder="0" id='duck_jasmine' src="../../lib/KataSpec.html"></iframe>
+  </div>
+
+  <script>
+    CodeMirror.commands.transposeChars = function(){}
+//all I should need is a load of arrays... probably best to hard code the stuff above... I don't want to but probably best to
+//also this is one step closer to ide
+//I think blade runner would do a good job of the ide
+
+    var duck_code = document.getElementById("duck_code")
+    duck_code.innerHTML = defaults['duck'].code
+
+    var codeEditor = CodeMirror.fromTextArea(duck_code, {
+      lineNumbers: true,
+      mode: "javascript",
+      matchBrackets: true,
+      viewTo: 100
+    });
+
+
+    var duck_tests = document.getElementById("duck_tests")
+    duck_tests.innerHTML = defaults['duck'].test
+    var testEditor = CodeMirror.fromTextArea(duck_tests, {
+      lineNumbers: true,
+      mode: "javascript",
+      matchBrackets: true,
+      viewTo: 100
+    });
+
+    testEditor.on('keyHandled', function(codeMirror, key){
+      if(key === 'Ctrl-T') {
+        runTests('duck')
+      }
+    })
+
+    codeEditor.on('keyHandled', function(codeMirror, key){
+      if(key === 'Ctrl-T') {
+        runTests('duck')
+      }
+    })
+
+    var editors = {
+      code: {
+        duck: codeEditor
+      },
+      test: {
+        duck: testEditor
+      }
+    }
+
+    function runTests(editor) {
+      var code = editors.code[editor].getValue()
+      var tests = editors.test[editor].getValue()
+      var allCode = code + '\n' + tests
+      localStorage.setItem('tests', allCode)
+      var jasmine = document.getElementById(editor + '_jasmine')
+      jasmine.src = jasmine.src
+    }
+
+    runTests('duck')
+    
+  </script>
+</body>
+</html>
