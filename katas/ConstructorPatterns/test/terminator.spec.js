@@ -52,7 +52,7 @@ describe('Constructor Patterns', function() {
     })
 
     describe('Defending', function() {
-        it('if a terminator attacks someone who is being defended then they kill the defender first', function() {
+        it('if a terminator attacks someone who is being defended then they kill the defender also', function() {
             api
                 .defend(arnie, sarah)
                 .kill(cop, sarah)
