@@ -70,7 +70,17 @@
     <div id="jasmine" class="step" data-x="2000">
       <h1>What Is Jasmine?</h1>
     </div>
-    <div id="expects" class="step" data-x="2000" data-y="2000">
+    <div id="layout" class="step" data-x="2000" data-y="2000">
+      <div class='coder'>
+        <textarea id='code_layout'>
+it('sets up tests like rspec with simple expects', function(){
+  expect(1).toBe(1)
+})
+</textarea>
+</div>
+<iframe class='tester' id='spec_layout' src="JasmineSpec.html"></iframe>
+</div>
+    <div id="expects" class="step" data-y="2000">
       <div class='coder'>
         <textarea id='code_expects'>
 it('sets up tests like rspec with simple expects', function(){
@@ -80,7 +90,7 @@ it('sets up tests like rspec with simple expects', function(){
 </div>
 <iframe class='tester' id='spec_expects' src="JasmineSpec.html"></iframe>
 </div>
-    <div id="spies" class="step" data-y="2000">
+    <div id="spies" class="step" data-x="-2000" data-y="2000">
       <div class='coder'>
         <textarea id='code_spies'>
 it('can spy on prototypes and create spies', function(){
@@ -90,7 +100,7 @@ it('can spy on prototypes and create spies', function(){
 </div>
 <iframe class='tester' id='spec_spies' src="JasmineSpec.html"></iframe>
 </div>
-    <div id="clock" class="step" data-x="-2000" data-y="2000">
+    <div id="clock" class="step" data-x="-4000" data-y="2000">
       <div class='coder'>
         <textarea id='code_clock'>
 it('can mock the clock', function(){
@@ -100,7 +110,7 @@ it('can mock the clock', function(){
 </div>
 <iframe class='tester' id='spec_clock' src="JasmineSpec.html"></iframe>
 </div>
-    <div id="matchers" class="step" data-x="-4000" data-y="2000">
+    <div id="matchers" class="step" data-x="-6000" data-y="2000">
       <div class='coder'>
         <textarea id='code_matchers'>
 it('create unique and better matchers', function(){
@@ -110,7 +120,7 @@ it('create unique and better matchers', function(){
 </div>
 <iframe class='tester' id='spec_matchers' src="JasmineSpec.html"></iframe>
 </div>
-<div id="conclusion" class="step" data-x="-4000">
+<div id="conclusion" class="step" data-x="-6000">
   <h1>Links and stuff for more content</h1>
 </div>
 </div>
@@ -129,7 +139,7 @@ it('create unique and better matchers', function(){
   var impress = impress()
   impress.init()
 
-  var slides = ['expects', 'spies', 'clock', 'matchers']
+  var slides = ['layout', 'expects', 'spies', 'clock', 'matchers']
   var editors = {}
   for(var s in slides) {
     var slide = slides[s]
