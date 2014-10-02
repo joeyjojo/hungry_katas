@@ -20,13 +20,11 @@ grunt jasmine
 
 the second will run the jasmine tests from the command line and will create a _SpecRunner.html so you can open the tests in the browser
 
-it isn't implemented yet but I would like there to be a
+grunt impress KataName
 
-grunt impress
+ie
 
-which should start the impress server and start the presentation, this might need something like
-
-grunt imrpess KataName
+grunt impress avoidingconditionals
 
 
 Kata Contents
