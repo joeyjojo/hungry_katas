@@ -1,3 +1,15 @@
+/*
+
+Tasks:
+
+dev:
+    usage: grunt dev --target=TARGET
+    example: grunt dev --target=AvoidingConditionals
+ description: Will open a dev server that allows the developer
+        to get access to a live reload server whilst modifying
+        their presentation
+
+*/
 module.exports = function(grunt) {
 
     var PORT = 8282,
@@ -41,14 +53,8 @@ module.exports = function(grunt) {
         },
 
         open: {
-            avoidingconditionals: {
-                path: KATAS + "AvoidingConditionals/AvoidingConditionals.html"
-            },
-            constructorpatterns: {
-                path: KATAS + "ConstructorPatterns/ConstructorPatterns.html"
-            },
-            jasmine: {
-                path: KATAS + "Jasmine/JasmineSpec.html"
+            dev: {
+                path: KATAS + grunt.option('target') + "/presentation.html"
             }
         }
     });
@@ -59,6 +65,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-open');
 
     grunt.registerTask('dev', 'Runs impress presentation in dev mode allowing for live reload', function(kata){
-        grunt.task.run('connect:server', 'open:' + kata, 'watch');
+        grunt.task.run('connect:server', 'open:dev', 'watch');
     });
 };
