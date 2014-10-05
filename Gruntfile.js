@@ -30,6 +30,10 @@ module.exports = function(grunt) {
         },
 
         watch: {
+            files: [
+                '**/*.js', '**/*.css', '**/*.html',
+                '!**/node_modules/**'
+            ],
             options: {
                 livereload: true,
                 interrupt: true
@@ -54,7 +58,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-open');
 
-    grunt.registerTask('impress', 'Runs the impress presentation for the specified kata', function(kata){
+    grunt.registerTask('dev', 'Runs impress presentation in dev mode allowing for live reload', function(kata){
         grunt.task.run('connect:server', 'open:' + kata, 'watch');
     });
 };
